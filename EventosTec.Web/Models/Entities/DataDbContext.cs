@@ -17,6 +17,8 @@ namespace EventosTec.Web.Models.Entities
 
         public DbSet<Client> Clients { get; set; }
         public DbSet<City> Cities { get; set; }
+        public DbSet<Event> Events { get; set; }
+        public DbSet<Category> Categories { get; set; }
 
     }
 }
