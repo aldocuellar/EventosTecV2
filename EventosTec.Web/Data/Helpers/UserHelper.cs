@@ -13,6 +13,7 @@ namespace EventosTec.Web.Data.Helpers
         private readonly UserManager<User> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly SignInManager<User> _signInManager;
+
         public UserHelper(UserManager<User> userManager, RoleManager<IdentityRole> roleManager,
             SignInManager<User> signInManager)
         {
