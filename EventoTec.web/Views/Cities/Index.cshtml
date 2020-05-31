@@ -1,0 +1,62 @@
+﻿@model IEnumerable<EventoTec.web.Models.entities.City>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="item active">
+    <img src="https://conceptodefinicion.de/wp-content/uploads/2014/03/ciudad.jpg" class="img-responsive" width="500" height="500" />
+   
+</div>
+
+<h2>Ciudades</h2>
+
+<p>
+    <a asp-action="Create" class="btn btn-sm btn-primary">Crear Ciudad</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Descripcion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Slung)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Descripcion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Slung)
+                </td>
+                <td>@item.Events.Count</td>
+                <td>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <a asp-action="Edit" asp-route-id="@item.id" class="btn btn-sm btn-info m-1">Editar</a>
+                    }
+
+                    <a asp-action="Details" asp-route-id="@item.id" class="btn btn-sm btn-info m-1">Detalle</a>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <a asp-action="Delete" asp-route-id="@item.id" class="btn btn-sm btn-infor m-1">Borrar</a>
+                    }
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

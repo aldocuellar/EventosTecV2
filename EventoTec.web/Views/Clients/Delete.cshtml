@@ -1,0 +1,29 @@
+﻿@model EventoTec.web.Models.entities.Client
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "CLients";
+}
+
+<h2>Borrar</h2>
+
+<h3>Seguro que deseas borrar?</h3>
+
+<div>
+    <h4>Borrar Cliente</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Address)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Address)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Borrar" class="btn btn-default" /> |
+        <a asp-action="Index">Regresar a la Lista</a>
+    </form>
+</div>
