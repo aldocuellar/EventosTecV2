@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using EventoTec.web.Models;
 using EventoTec.web.Models.entities;
+using EventoTec.web.Models.ModelApi;
 
 namespace EventoTec.web.Controllers.API
 {
@@ -37,14 +38,31 @@ namespace EventoTec.web.Controllers.API
                 return BadRequest(ModelState);
             }
 
-            var category = await _context.Category.FindAsync(id);
+            var category = await _context.Category.Include(a => a.Events)
+                .FirstOrDefaultAsync(a => a.Id == id);
+
+            var response = new CategoryResponse
+            {
+                Description = category.Description,
+                Name = category.Name,
+                Id = category.Id,
+                Events = category.Events.Select(p => new EventResponse
+                {
+                    Id = p.Id,
+                    Name = p.Name,
+                    Duration = p.Duration,
+                    EventDate = p.EventDate,
+                    People = p.People,
+                    Description = p.Description,
+                }).ToList(),
+            };
 
             if (category == null)
             {
                 return NotFound();
             }
 
-            return Ok(category);
+            return Ok(response);
         }
 
         // PUT: api/Categories/5
