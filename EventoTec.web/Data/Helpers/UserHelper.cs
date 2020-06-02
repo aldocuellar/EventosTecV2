@@ -21,7 +21,13 @@ namespace EventoTec.web.Data.Helpers
             _signInManager = signInManager;
         }
 
-        //metodos incluidos de tarea
+        public async Task<SignInResult> ValidatePasswordAsync(User user, string password)
+        {
+            return await _signInManager.CheckPasswordSignInAsync(
+                user, password, false
+                );
+        }
+
         public async Task<SignInResult>LoginAsync(LoginViewModel model)
         {
             return await _signInManager.PasswordSignInAsync(

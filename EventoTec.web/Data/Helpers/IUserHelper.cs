@@ -10,6 +10,7 @@ namespace EventoTec.web.Data.Helpers
 {
     public interface IUserHelper
     {
+        Task<SignInResult> ValidatePasswordAsync(User user, string password);
         Task<User> GetUserByEMailAsync(string email);
         Task<IdentityResult> AddUserAssync(User User, string Password);
         Task CheckRoleAsync(string roleName);
