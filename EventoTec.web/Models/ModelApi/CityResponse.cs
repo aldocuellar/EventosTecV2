@@ -10,7 +10,7 @@ namespace EventoTec.web.Models.ModelApi
 
         public int Id { get; set; }
         public string Name { get; set; }
-        public string Desciption { get; set; }
+        public string Description { get; set; }
         public string Slung { get; set; }
         public ICollection<EventResponse> Events { get; set; }
 

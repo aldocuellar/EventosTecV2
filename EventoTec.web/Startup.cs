@@ -59,6 +59,9 @@ namespace EventoTec.web
             });
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+            services.AddDbContext<EventoTecwebContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("EventoTecwebContext")));
             
         }
 
